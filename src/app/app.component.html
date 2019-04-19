@@ -1,11 +1,7 @@
 <header>
   <mat-toolbar>
     <button mat-button routerLink="welcome">Portada</button>
-    <button mat-button [matMenuTriggerFor]="menu">Productos</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Tipo 1</button>
-      <button mat-menu-item>Tipo 2</button>
-    </mat-menu>
+    <button mat-button routerLink="skeins">Lana</button>
     <button mat-button [matMenuTriggerFor]="menuLogin">Iniciar sesión</button>
     <mat-menu #menuLogin="matMenu">
       <button mat-menu-item routerLink="login">Login</button>

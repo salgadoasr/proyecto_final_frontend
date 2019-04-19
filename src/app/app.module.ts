@@ -8,16 +8,20 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './components/auth/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { LoginComponent } from './components/login/login.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { SkeinsComponent } from './components/products/skeins/skeins.component';
+import { SkeinComponent } from './components/products/skein/skein.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    LoginComponent
+    LoginComponent,
+    SkeinsComponent,
+    SkeinComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login/login.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { SkeinsComponent } from './components/products/skeins/skeins.component';
+import { SkeinComponent } from './components/products/skein/skein.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'skeins',
+    component: SkeinsComponent
+  },
+  {
+    path: 'skein/:skein',
+    component: SkeinComponent
   },
 ];
 

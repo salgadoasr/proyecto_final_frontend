@@ -1,0 +1,14 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ product$.name }}</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{ product$.image_url}}" alt="{{ product$.name }}">
+  <mat-card-content>
+    <p>{{ product$.specifications }}</p>
+    <p>{{ product$.prize }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button>Comprar</button>
+  </mat-card-actions>
+</mat-card>

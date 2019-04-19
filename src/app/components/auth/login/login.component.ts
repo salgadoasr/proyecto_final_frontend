@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +20,7 @@ export class LoginComponent {
     { updateOn: 'blur' }
   );
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   login() {
     if (this.loginForm.valid) {
@@ -25,5 +28,6 @@ export class LoginComponent {
         .login(this.loginForm.value)
         .subscribe(data => localStorage.setItem('auth', JSON.stringify(data)), error => console.log(error));
     }
+    this.router.navigate(['/welcome']);
   }
 }
