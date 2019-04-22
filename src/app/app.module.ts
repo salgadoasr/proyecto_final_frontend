@@ -13,6 +13,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { SkeinsComponent } from './components/products/skeins/skeins.component';
 import { SkeinComponent } from './components/products/skein/skein.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { SkeinComponent } from './components/products/skein/skein.component';
     WelcomeComponent,
     LoginComponent,
     SkeinsComponent,
-    SkeinComponent
+    SkeinComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -7,11 +7,19 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts() {
-    return this.http.get(`${environment.apiBaseUrl}/user/products`);
+  getSkeins() {
+    return this.http.get(`${environment.apiBaseUrl}/user/skeins`);
   }
 
-  getProduct(id: string) {
-    return this.http.get(`${environment.apiBaseUrl}/user/products/${id}`);
+  getSkeinColors(skein_uuid) {
+    return this.http.get(`${environment.apiBaseUrl}/user/skeincolors`, {
+      params: {
+        skein_uuid: skein_uuid
+      }
+    });
+  }
+
+  getSkein(id: string) {
+    return this.http.get(`${environment.apiBaseUrl}/user/skeins/${id}`);
   }
 }

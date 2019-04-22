@@ -17,11 +17,11 @@ export class SkeinsComponent implements OnInit {
 
   ngOnInit() {
     this.products$ = this.productService
-      .getProducts()
+      .getSkeins()
       .pipe(catchError(error => error));
   }
 
-  goToProduct(skein) {
+  goToSkein(skein) {
     this.router.navigate(['/skein', JSON.stringify(skein)]);
   }
 

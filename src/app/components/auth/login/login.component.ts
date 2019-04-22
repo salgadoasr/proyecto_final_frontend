@@ -26,8 +26,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService
         .login(this.loginForm.value)
-        .subscribe(data => localStorage.setItem('auth', JSON.stringify(data)), error => console.log(error));
+        .subscribe(data => localStorage.setItem('auth', JSON.stringify(data)), error => console.log(error), () => this.router.navigate(['/welcome']));
     }
-    this.router.navigate(['/welcome']);
   }
 }

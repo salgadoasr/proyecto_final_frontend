@@ -3,11 +3,19 @@
     <mat-card-title>{{ product$.name }}</mat-card-title>
     <mat-card-subtitle></mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="{{ product$.image_url}}" alt="{{ product$.name }}">
+  <img mat-card-image src="{{ imageUrl$ }}" alt="{{ product$.name }}">
   <mat-card-content>
     <p>{{ product$.specifications }}</p>
     <p>{{ product$.prize }}</p>
   </mat-card-content>
+  <mat-form-field>
+    <mat-label>Color</mat-label>
+    <mat-select>
+      <mat-option (click)="selectImageUrl(color.image_url)" *ngFor="let color of (colors$ | async)">
+        {{ color.color }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-card-actions>
     <button mat-raised-button>Comprar</button>
   </mat-card-actions>

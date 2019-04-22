@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 import { ProductService } from '../../services/products.service';
 
@@ -11,12 +12,17 @@ import { ProductService } from '../../services/products.service';
 export class WelcomeComponent implements OnInit {
   products$;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.products$ = this.productService
-      .getProducts()
+      .getSkeins()
       .pipe(catchError(error => error));
   }
+
+  goToSkein(skein) {
+    this.router.navigate(['/skein', JSON.stringify(skein)]);
+  }
+
 
 }
