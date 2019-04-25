@@ -14,6 +14,10 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { SkeinsComponent } from './components/products/skeins/skeins.component';
 import { SkeinComponent } from './components/products/skein/skein.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { KitsComponent } from './components/products/kits/kits.component';
+import { KitComponent } from './components/products/kit/kit.component';
+import { ProfileComponent } from './components/auth/profile/profile.component';
+import { CartComponent } from './components/shopping/cart/cart.component';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import { RegisterComponent } from './components/auth/register/register.component
     LoginComponent,
     SkeinsComponent,
     SkeinComponent,
-    RegisterComponent
+    RegisterComponent,
+    KitsComponent,
+    KitComponent,
+    ProfileComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

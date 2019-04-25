@@ -2,7 +2,7 @@
   <mat-grid-tile>
     <mat-card class="card">
       <mat-card-content>
-        <img mat-card-image src="{{ imageUrl$ }}" alt="{{ product$.name }}">
+        <img mat-card-image src="{{ product$.image_url }}" alt="{{ product$.name }}">
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
@@ -11,27 +11,24 @@
       <mat-card-title>{{ product$.name }}</mat-card-title>
       <mat-card-content>
         <p>{{ product$.composition }}</p>
-        <p>{{ product$.weight }} {{ product$.large }}</p>
-        <p>{{ product$.description }}</p>
+        <p>{{ product$.details }}</p>
         <p>
           <button (click)="removeUnit()" class="btn btn-manage-units btn-remove-unit">-</button>
           <input id="quant" type="text" class="selected-units text-center" value="{{ quantity }}">
           <button (click)="addUnit()" class="btn btn-manage-units btn-add-unit">+</button>
-          <span class="prize"> {{ product$.prize }}€</span>
+          <span class="prize"> {{ sizePrizes }}€</span>
         </p>
       </mat-card-content>
       <mat-form-field>
-        <mat-label>Color</mat-label>
+        <mat-label>Size</mat-label>
         <mat-select>
-          <mat-option (click)="selectImageUrl(color.image_url); actualColor(color)"
-            *ngFor="let color of (colors$ | async)">
-            {{ color.color }}
+          <mat-option (click)="selectPrize(size.prize)" *ngFor="let size of (sizes$ | async)">
+            {{ size.size }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-card-actions>
-        <button mat-raised-button
-          (click)="this.shoppingCartService.addToCart(product$, this.color, quantity)">Comprar</button>
+        <button mat-raised-button>Comprar</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

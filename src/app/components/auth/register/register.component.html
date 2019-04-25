@@ -1,18 +1,18 @@
-<form class="example-form" [formGroup]="registerForm" (ngSubmit)="register()">
-  <mat-form-field class="example-full-width">
+<form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+  <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Nombre" formControlName="name">
   </mat-form-field>
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Apellidos" formControlName="surnames">
   </mat-form-field>
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="full-width">
     <input matInput type="" placeholder="Email" formControlName="email">
   </mat-form-field>
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Password" formControlName="password">
   </mat-form-field>
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Dirección" formControlName="direction">
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="register()">Register</button>
+  <button mat-raised-button color="primary" (click)="register()">Regístrate</button>
 </form>

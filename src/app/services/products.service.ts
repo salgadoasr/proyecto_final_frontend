@@ -19,7 +19,24 @@ export class ProductService {
     });
   }
 
-  getSkein(id: string) {
-    return this.http.get(`${environment.apiBaseUrl}/user/skeins/${id}`);
+  getSkein(skein_uuid) {
+    return this.http.get(`${environment.apiBaseUrl}/user/skein`, {
+      params: {
+        skein_uuid: skein_uuid
+      }
+    });
   }
+
+  getKits() {
+    return this.http.get(`${environment.apiBaseUrl}/user/kits`);
+  }
+
+  getKitSizes(kit_uuid) {
+    return this.http.get(`${environment.apiBaseUrl}/user/kitsize`, {
+      params: {
+        kit_uuid: kit_uuid
+      }
+    });
+  }
+
 }

@@ -26,7 +26,13 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService
         .login(this.loginForm.value)
-        .subscribe(data => localStorage.setItem('auth', JSON.stringify(data)), error => console.log(error), () => this.router.navigate(['/welcome']));
+        .subscribe(data => {
+          this.authService.token = JSON.stringify(data);
+          localStorage.setItem('auth', JSON.stringify(data));
+        }, error => console.log(error), () => {
+          this.authService.user = JSON.parse(this.authService.token).user;
+          this.router.navigate(['/welcome']);
+        });
     }
   }
 }

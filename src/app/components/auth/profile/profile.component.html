@@ -1,0 +1,12 @@
+<form class="form" [formGroup]="profileForm" (ngSubmit)="update()">
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Nombre" formControlName="name">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Apellidos" formControlName="surnames">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Dirección" formControlName="direction">
+  </mat-form-field>
+  <button mat-raised-button color="primary">Actualiza</button>
+</form>

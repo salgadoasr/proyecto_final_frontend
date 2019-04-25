@@ -2,11 +2,24 @@
   <mat-toolbar>
     <button mat-button routerLink="welcome">Portada</button>
     <button mat-button routerLink="skeins">Lana</button>
-    <button mat-button [matMenuTriggerFor]="menuLogin">Iniciar sesión</button>
-    <mat-menu #menuLogin="matMenu">
-      <button mat-menu-item routerLink="login">Login</button>
-      <button mat-menu-item routerLink="register">Register</button>
-    </mat-menu>
+    <button mat-button routerLink="kits">Kits</button>
+    <div *ngIf="!authService.isAuthenticated()">
+      <button mat-button [matMenuTriggerFor]="menuLogin">Iniciar sesión</button>
+      <mat-menu #menuLogin="matMenu">
+        <button mat-menu-item routerLink="login">Login</button>
+        <button mat-menu-item routerLink="register">Register</button>
+      </mat-menu>
+    </div>
+    <div *ngIf="authService.isAuthenticated()">
+      <button mat-button routerLink="cart">Carrito</button>
+    </div>
+    <div *ngIf="authService.isAuthenticated()">
+      <button mat-button [matMenuTriggerFor]="menuLogin">Usuario</button>
+      <mat-menu #menuLogin="matMenu">
+        <button mat-menu-item routerLink="profile">Datos usuario</button>
+        <button mat-menu-item (click)="authService.logout()">Logout</button>
+      </mat-menu>
+    </div>
   </mat-toolbar>
 </header>
 <main>

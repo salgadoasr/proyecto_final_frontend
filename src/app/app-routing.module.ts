@@ -5,6 +5,10 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { SkeinsComponent } from './components/products/skeins/skeins.component';
 import { SkeinComponent } from './components/products/skein/skein.component';
+import { KitsComponent } from './components/products/kits/kits.component';
+import { KitComponent } from './components/products/kit/kit.component';
+import { ProfileComponent } from './components/auth/profile/profile.component';
+import { CartComponent } from './components/shopping/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -21,6 +25,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
     path: 'register',
     component: RegisterComponent
   },
@@ -31,6 +39,18 @@ const routes: Routes = [
   {
     path: 'skein/:skein',
     component: SkeinComponent
+  },
+  {
+    path: 'kits',
+    component: KitsComponent
+  },
+  {
+    path: 'kit/:kit',
+    component: KitComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
   }
 ];
 

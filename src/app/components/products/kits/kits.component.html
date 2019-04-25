@@ -7,11 +7,11 @@
       </mat-card-header>
       <img mat-card-image src="{{ product.image_url}}" alt="{{ product.name }}">
       <mat-card-content>
-        <p>{{ product.type }}</p>
+        <p>{{ product.details }}</p>
         <p>{{ product.prize }}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button (click)="goToSkein(product)" mat-raised-button>VER DETALLE</button>
+        <button (click)="goToKit(product)" mat-raised-button>VER DETALLE</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
