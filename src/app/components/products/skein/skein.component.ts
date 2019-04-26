@@ -49,4 +49,5 @@ export class SkeinComponent implements OnInit {
       ++this.quantity;
   }
 
+
 }

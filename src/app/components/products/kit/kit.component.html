@@ -22,13 +22,14 @@
       <mat-form-field>
         <mat-label>Size</mat-label>
         <mat-select>
-          <mat-option (click)="selectPrize(size.prize)" *ngFor="let size of (sizes$ | async)">
+          <mat-option (click)="selectPrize(size.prize); actualSize(size)" *ngFor="let size of (sizes$ | async)">
             {{ size.size }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-card-actions>
-        <button mat-raised-button>Comprar</button>
+        <button mat-raised-button
+          (click)="shoppingCartService.addKitToCart(product$, this.size, quantity)">Comprar</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

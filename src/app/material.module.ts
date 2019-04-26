@@ -10,6 +10,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatDividerModule,
     MatSidenavModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatBadgeModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,
@@ -36,7 +40,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatDividerModule,
     MatSidenavModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatBadgeModule,
+    MatTableModule
   ],
 })
 export class MaterialModule { }

@@ -1,26 +1,24 @@
 <mat-grid-list cols="2">
-  <mat-grid-tile *ngFor="let cart of this.shoppingCartService.cart">
+  <mat-grid-tile *ngFor="let cart of shoppingCartService.cart">
     <mat-card class="card">
       <mat-card-header>
         <mat-card-title>{{ cart.product.name }}</mat-card-title>
         <mat-card-subtitle></mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="{{ cart.color.image_url}}" alt="{{ cart.product.name }}">
+      <img mat-card-image src="{{ cart.product.image_url}}" alt="{{ cart.product.name }}">
       <mat-card-content>
         <p>{{ cart.product.type }}</p>
         <p>{{ cart.product.prize }}</p>
         <p>
-          <button (click)="this.shoppingCartService.removeUnit(cart.product, cart.color, 1)"
+          <button (click)="shoppingCartService.removeUnitFromCart(cart)"
             class="btn btn-manage-units btn-remove-unit">-</button>
           <input id="quant" type="text" class="selected-units text-center" value="{{ cart.quantity }}">
-          <button (click)="this.shoppingCartService.addToCart(cart.product, cart.color, 1)"
-            class="btn btn-manage-units btn-add-unit">+</button>
+          <button (click)="shoppingCartService.addToCart(cart)" class="btn btn-manage-units btn-add-unit">+</button>
           <span class="prize"> {{ cart.product.prize }}€</span>
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button
-          (click)="this.shoppingCartService.deleteFromCart(cart.product, cart.color)">Eliminar</button>
+        <button mat-raised-button (click)="shoppingCartService.deleteFromCart(cart)">Eliminar</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
