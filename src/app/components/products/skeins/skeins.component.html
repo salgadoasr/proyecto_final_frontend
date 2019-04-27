@@ -1,4 +1,8 @@
-<mat-grid-list cols="2">
+<div class="titulo">
+  <h1>Lanas</h1>
+</div>
+
+<mat-grid-list cols="3">
   <mat-grid-tile *ngFor="let product of (products$ | async)">
     <mat-card class="card">
       <mat-card-header>

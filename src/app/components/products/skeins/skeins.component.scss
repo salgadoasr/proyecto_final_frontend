@@ -1,3 +1,18 @@
 .card {
   max-width: 400px;
+  margin:auto;
+}
+
+.card img {
+  background-size: cover;
+}
+
+.card mat-card-header {
+  border-bottom: 1px solid lightgray;
+}
+
+.titulo h1{
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+  color: #494949;
+  margin:50px;
 }
