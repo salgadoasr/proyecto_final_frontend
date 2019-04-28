@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 
 import { ProductService } from '../../../services/products.service';
 import { ShoppingCartService } from '../../../services/shoppingcart.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-kit',
@@ -17,7 +18,7 @@ export class KitComponent implements OnInit {
   quantity;
   size;
 
-  constructor(private productService: ProductService, private router: ActivatedRoute, private shoppingCartService: ShoppingCartService) { }
+  constructor(private productService: ProductService, private router: ActivatedRoute, private shoppingCartService: ShoppingCartService, private authService: AuthService) { }
 
   ngOnInit() {
     this.product$ = JSON.parse(this.router.snapshot.params.kit);

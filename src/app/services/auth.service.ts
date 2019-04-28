@@ -48,6 +48,11 @@ export class AuthService {
     return true;
   }
 
+  isAdmin() {
+    if (this.user.isAdmin === 1) return true;
+    return false;
+  }
+
   logout() {
     localStorage.removeItem('auth');
     this.token = null;

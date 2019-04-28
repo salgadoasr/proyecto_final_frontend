@@ -5,7 +5,9 @@ import { AuthService } from './auth.service';
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
   totalQuantity;
+  totalPrize;
   cart = [];
+
 
   //CHARGE the shopping cart from localstorage at the beginning
   constructor(private authService: AuthService) {
@@ -15,6 +17,7 @@ export class ShoppingCartService {
       }
     }
     this.calcTotalItems();
+    this.calcTotalPrize();
   }
 
 
@@ -31,7 +34,22 @@ export class ShoppingCartService {
   }
 
 
-  //ADD skeins to shopping cart
+  calcTotalPrize() {
+    let productTotal;
+    this.totalPrize = 0;
+    for (let i = 0; i < this.cart.length; i++) {
+      if (this.cart[i].color) {
+        productTotal = this.cart[i].quantity * parseFloat(this.cart[i].product.prize);
+      } else {
+        productTotal = this.cart[i].quantity * parseFloat(this.cart[i].size.prize);
+      }
+      this.totalPrize = this.totalPrize + parseFloat(productTotal);
+      this.totalPrize = Math.round(this.totalPrize * 100) / 100;
+    }
+  }
+
+
+  //ADD skeins to shopping cart and create a instance of the product in the shopping cart memory
   addSkeinToCart(product, color, quantity) {
     let actualItem;
     let position;
@@ -55,10 +73,12 @@ export class ShoppingCartService {
       this.cart[position] = actualItem;
     }
     this.calcTotalItems();
+    this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 
-  //ADD kits to shopping cart
+
+  //ADD kits to shopping cart and create a instance of the product in the shopping cart memory
   addKitToCart(product, size, quantity) {
     let actualItem;
     let position;
@@ -81,13 +101,13 @@ export class ShoppingCartService {
       actualItem.quantity = actualItem.quantity + quantity;
       this.cart[position] = actualItem;
     }
-
     this.calcTotalItems();
+    this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 
 
-  //DELETE a product from shopping cart
+  //ADD a unit of product from shopping cart 
   addToCart(product) {
     if (product.color) {
       this.addUnitSkein(product);
@@ -112,6 +132,7 @@ export class ShoppingCartService {
     actualItem.quantity = ++actualItem.quantity;
     this.cart[position] = actualItem;
     this.calcTotalItems();
+    this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 
@@ -131,9 +152,9 @@ export class ShoppingCartService {
     actualItem.quantity = ++actualItem.quantity;
     this.cart[position] = actualItem;
     this.calcTotalItems();
+    this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
-
 
 
   //DELETE a product from shopping cart
@@ -144,7 +165,6 @@ export class ShoppingCartService {
       this.deleteKitFromCart(product);
     }
   }
-
 
 
   //DELETE a skein from shopping cart
@@ -161,9 +181,9 @@ export class ShoppingCartService {
     delete this.cart[position];
     this.cart.splice(position, 1);
     this.calcTotalItems();
+    this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
-
 
 
   //DELETE a kit from shopping cart
@@ -180,6 +200,7 @@ export class ShoppingCartService {
     delete this.cart[position];
     this.cart.splice(position, 1);
     this.calcTotalItems();
+    this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 
@@ -216,6 +237,7 @@ export class ShoppingCartService {
       this.cart[position] = actualItem;
     }
     this.calcTotalItems();
+    this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 
@@ -242,6 +264,7 @@ export class ShoppingCartService {
       this.cart[position] = actualItem;
     }
     this.calcTotalItems();
+    this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 

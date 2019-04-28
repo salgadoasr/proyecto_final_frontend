@@ -1,6 +1,6 @@
 <mat-grid-list cols="2">
   <mat-grid-tile>
-    <mat-card class="card">
+    <mat-card class="image">
       <mat-card-content>
         <img mat-card-image src="{{ product$.image_url }}" alt="{{ product$.name }}">
       </mat-card-content>
@@ -28,8 +28,9 @@
         </mat-select>
       </mat-form-field>
       <mat-card-actions>
-        <button mat-raised-button
+        <button mat-raised-button *ngIf="authService.isAuthenticated()"
           (click)="shoppingCartService.addKitToCart(product$, this.size, quantity)">Comprar</button>
+        <button mat-raised-button *ngIf="!authService.isAuthenticated()" routerLink="/login">Comprar</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

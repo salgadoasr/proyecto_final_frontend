@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { ProductService } from '../../../services/products.service';
 import { ShoppingCartService } from '../../../services/shoppingcart.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-skein',
@@ -18,7 +19,7 @@ export class SkeinComponent implements OnInit {
   quantity;
   color;
 
-  constructor(private productService: ProductService, private router: ActivatedRoute, private shoppingCartService: ShoppingCartService) { }
+  constructor(private productService: ProductService, private router: ActivatedRoute, private shoppingCartService: ShoppingCartService, private authService: AuthService) { }
 
   ngOnInit() {
     this.product$ = JSON.parse(this.router.snapshot.params.skein);
@@ -48,6 +49,5 @@ export class SkeinComponent implements OnInit {
     if (this.quantity < 50)
       ++this.quantity;
   }
-
 
 }

@@ -2,21 +2,23 @@
   <h1>Kits</h1>
 </div>
 
-<mat-grid-list cols="2">
-  <mat-grid-tile *ngFor="let product of (products$ | async)">
-    <mat-card class="card">
-      <mat-card-header>
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle></mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="{{ product.image_url}}" alt="{{ product.name }}">
-      <mat-card-content>
-        <p>{{ product.details }}</p>
-        <p>{{ product.prize }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="goToKit(product)" mat-raised-button>VER DETALLE</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="container">
+  <div class="row">
+    <div class="col" *ngFor="let product of (products$ | async)">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>{{ product.name }}</mat-card-title>
+          <mat-card-subtitle></mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{ product.image_url}}" alt="{{ product.name }}">
+        <mat-card-content>
+          <p>{{ product.details }}</p>
+          <p>{{ product.prize }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="goToKit(product)" mat-raised-button>VER DETALLE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,25 +1,31 @@
-<mat-grid-list cols="2">
-  <mat-grid-tile *ngFor="let cart of shoppingCartService.cart">
-    <mat-card class="card">
-      <mat-card-header>
-        <mat-card-title>{{ cart.product.name }}</mat-card-title>
-        <mat-card-subtitle></mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="{{ cart.product.image_url}}" alt="{{ cart.product.name }}">
-      <mat-card-content>
-        <p>{{ cart.product.type }}</p>
-        <p>{{ cart.product.prize }}</p>
-        <p>
-          <button (click)="shoppingCartService.removeUnitFromCart(cart)"
-            class="btn btn-manage-units btn-remove-unit">-</button>
-          <input id="quant" type="text" class="selected-units text-center" value="{{ cart.quantity }}">
-          <button (click)="shoppingCartService.addToCart(cart)" class="btn btn-manage-units btn-add-unit">+</button>
-          <span class="prize"> {{ cart.product.prize }}€</span>
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button (click)="shoppingCartService.deleteFromCart(cart)">Eliminar</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="titulo">
+  <h1>Carrito</h1>
+</div>
+
+<table class="table table-striped table-responsive-md btn-table">
+
+  <tr *ngFor="let cart of shoppingCartService.cart">
+    <td *ngIf="cart.color"><img mat-card-sm-image src="{{ cart.color.image_url}}" alt="{{ cart.product.name }}"></td>
+    <td *ngIf="cart.size"><img mat-card-sm-image src="{{ cart.product.image_url}}" alt="{{ cart.product.name }}"></td>
+    <td>{{ cart.product.name }}</td>
+    <td>
+      <button (click)="shoppingCartService.removeUnitFromCart(cart)"
+        class="btn btn-manage-units btn-remove-unit">-</button>
+      <input id="quant" type="text" class="selected-units text-center" value="{{ cart.quantity }}">
+      <button (click)="shoppingCartService.addToCart(cart)" class="btn btn-manage-units btn-add-unit">+</button>
+    </td>
+    <td *ngIf="cart.color">{{ cart.color.color }}</td>
+    <td *ngIf="cart.size">{{ cart.size.size }}</td>
+    <td *ngIf="cart.color"> {{ cart.product.prize }} €</td>
+    <td *ngIf="cart.size"> {{ cart.size.prize }} €</td>
+    <td><button mat-raised-button (click)="shoppingCartService.deleteFromCart(cart)">Eliminar</button></td>
+  </tr>
+  <tr>
+    <td colspan="6">Total : {{ shoppingCartService.totalPrize }} €</td>
+  </tr>
+  <tr>
+    <td colspan="6"><button mat-raised-button (click)="shoppingCartService.deleteFromCart(cart)">Tramitar
+        pedido</button></td>
+  </tr>
+
+</table>
