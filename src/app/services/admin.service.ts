@@ -7,14 +7,14 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  createSkein({ name, description, composition, weight, large, type_id, prize }) {
+  createSkein({ name, description, composition, weight, large, season, prize }) {
     return this.http.post(`${environment.apiBaseUrl}/admin/skein`, {
       name,
       description,
       composition,
       weight,
       large,
-      type_id,
+      season,
       prize
     });
   }
@@ -36,13 +36,13 @@ export class AdminService {
     return this.http.post(`${environment.apiBaseUrl}/admin/createcolor`, formData);
   }
 
-  createKit({ name, details, type_id, skein: uuid }, image) {
+  createKit({ name, details, season, skein: uuid }, image) {
     const formData = new FormData();
     formData.append('file', image);
     formData.append('name', name);
     formData.append('details', details);
     formData.append('uuid', uuid);
-    formData.append('type_id', type_id);
+    formData.append('season', season);
     return this.http.post(`${environment.apiBaseUrl}/admin/createkit`, formData);
   }
 

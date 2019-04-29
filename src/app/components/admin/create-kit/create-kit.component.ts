@@ -20,7 +20,7 @@ export class CreateKitComponent implements OnInit {
       details: ['', [Validators.required]],
       file: ['', [Validators.required]],
       skein: ['', [Validators.required]],
-      type_id: ['', [Validators.required]]
+      season: ['', [Validators.required]]
     },
     { updateOn: 'blur' }
   );

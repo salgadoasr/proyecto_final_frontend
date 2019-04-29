@@ -12,23 +12,25 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./kit.component.scss']
 })
 export class KitComponent implements OnInit {
-  product$;
+  product;
   sizes$;
   sizePrizes;
+  sizeSkeins;
   quantity;
   size;
 
   constructor(private productService: ProductService, private router: ActivatedRoute, private shoppingCartService: ShoppingCartService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.product$ = JSON.parse(this.router.snapshot.params.kit);
+    this.product = JSON.parse(this.router.snapshot.params.kit);
     this.sizes$ = this.productService
-      .getKitSizes(this.product$.kit_uuid)
+      .getKitSizes(this.product.kit_uuid)
       .pipe(catchError(error => error));
-    this.sizePrizes = this.product$.prize;
+    this.sizePrizes = this.product.prize;
+    this.sizeSkeins = this.product.skeins;
     this.quantity = 1;
     //lo hago porque no consigo acceder al objeto color del producto cuando carga el módulo pero sirve igual porque tiene los campos que necesito
-    this.size = this.product$;
+    this.size = this.product;
   }
 
   actualSize(size) {
@@ -37,6 +39,10 @@ export class KitComponent implements OnInit {
 
   selectPrize(prize) {
     this.sizePrizes = prize;
+  }
+
+  selectSkeins(skeins) {
+    this.sizeSkeins = skeins;
   }
 
   removeUnit() {

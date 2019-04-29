@@ -2,16 +2,17 @@
   <mat-grid-tile>
     <mat-card class="image">
       <mat-card-content>
-        <img mat-card-image src="{{ product$.image_url }}" alt="{{ product$.name }}">
+        <img mat-card-image src="{{ product.image_url }}" alt="{{ product.name }}">
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-card class="card-content">
-      <mat-card-title>{{ product$.name }}</mat-card-title>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>{{ sizeSkeins }} ovillos</mat-card-subtitle>
       <mat-card-content>
-        <p>{{ product$.composition }}</p>
-        <p>{{ product$.details }}</p>
+        <p>{{ product.composition }}</p>
+        <p>{{ product.details }}</p>
         <p>
           <button (click)="removeUnit()" class="btn btn-manage-units btn-remove-unit">-</button>
           <input id="quant" type="text" class="selected-units text-center" value="{{ quantity }}">
@@ -22,15 +23,15 @@
       <mat-form-field>
         <mat-label>Size</mat-label>
         <mat-select>
-          <mat-option (click)="selectPrize(size.prize); actualSize(size)" *ngFor="let size of (sizes$ | async)"
-            value="{{ size.size }}">
+          <mat-option (click)="selectPrize(size.prize); selectSkeins(size.skeins); actualSize(size)"
+            *ngFor="let size of (sizes$ | async)" value="{{ size.size }}">
             {{ size.size }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-card-actions>
         <button mat-raised-button *ngIf="authService.isAuthenticated()"
-          (click)="shoppingCartService.addKitToCart(product$, this.size, quantity)">Comprar</button>
+          (click)="shoppingCartService.addKitToCart(product, this.size, quantity)">Comprar</button>
         <button mat-raised-button *ngIf="!authService.isAuthenticated()" routerLink="/login">Comprar</button>
       </mat-card-actions>
     </mat-card>

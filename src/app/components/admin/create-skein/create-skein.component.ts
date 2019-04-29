@@ -19,7 +19,7 @@ export class CreateSkeinComponent implements OnInit {
       composition: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       large: ['', [Validators.required]],
-      type_id: ['', [Validators.required]],
+      season: ['', [Validators.required]],
       prize: ['', [Validators.required]],
     },
     { updateOn: 'blur' }
