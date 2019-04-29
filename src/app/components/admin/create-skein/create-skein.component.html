@@ -1,0 +1,32 @@
+<form class="form" [formGroup]="createSkeinForm" (ngSubmit)="create()">
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Nombre" formControlName="name">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Descripción" formControlName="description">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Composición" formControlName="composition">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Peso" formControlName="weight">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Largo" formControlName="large">
+  </mat-form-field><br />
+  <mat-form-field>
+    <mat-label>Temporada</mat-label>
+    <mat-select formControlName="type_id">
+      <mat-option value="1">
+        primavera-verano
+      </mat-option>
+      <mat-option value="2">
+        otoño-invierno
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Precio" formControlName="prize">
+  </mat-form-field>
+  <button mat-raised-button color="primary">Añade lana</button>
+</form>

@@ -1,0 +1,15 @@
+<form class="form" [formGroup]="createColorForm" (ngSubmit)="create(imageInput)">
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Color" formControlName="color">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Lana</mat-label>
+    <mat-select formControlName="skein">
+      <mat-option *ngFor="let product of (products$ | async)" value="{{ product.skein_uuid }}">
+        {{ product.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <input #imageInput multiple type="file" accept="image/*" placeholder="Image" formControlName="file"><br /><br />
+  <button mat-raised-button color="primary">Añade color</button>
+</form>

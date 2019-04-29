@@ -24,7 +24,7 @@
         <mat-label>Color</mat-label>
         <mat-select>
           <mat-option (click)="selectImageUrl(color.image_url); actualColor(color)"
-            *ngFor="let color of (colors$ | async)">
+            *ngFor="let color of (colors$ | async)" value="{{ color.color }}">
             {{ color.color }}
           </mat-option>
         </mat-select>

@@ -3,22 +3,25 @@
     <button mat-button routerLink="welcome"><img src="assets/logo_katia.svg"></button>
     <button mat-button routerLink="skeins">Lana</button>
     <button mat-button routerLink="kits">Kits</button>
-    <div *ngIf="!authService.isAuthenticated()">
-      <button mat-button [matMenuTriggerFor]="menuLogin">Iniciar sesión</button>
-      <mat-menu #menuLogin="matMenu">
-        <button mat-menu-item routerLink="login">Login</button>
-        <button mat-menu-item routerLink="register">Register</button>
-      </mat-menu>
-    </div>
+    <button mat-button *ngIf="!authService.isAuthenticated()" [matMenuTriggerFor]="menuLogin">Iniciar sesión</button>
+    <mat-menu #menuLogin="matMenu">
+      <button mat-menu-item routerLink="login">Login</button>
+      <button mat-menu-item routerLink="register">Register</button>
+    </mat-menu>
+    <button mat-button *ngIf="authService.isAdmin()" [matMenuTriggerFor]="menuAdmin">Admin</button>
+    <mat-menu #menuAdmin="matMenu">
+      <button mat-menu-item routerLink="createskein">Crear lana</button>
+      <button mat-menu-item routerLink="createcolor">Crear color</button>
+      <button mat-menu-item routerLink="createkit">Crear kit</button>
+      <button mat-menu-item routerLink="createsize">Crear talla</button>
+    </mat-menu>
+    <button mat-button *ngIf="authService.isAuthenticated()" routerLink="cart">
+      <i class="material-icons" matBadge="{{ shoppingCartService.totalQuantity }}" matBadgeColor="warn">
+        shopping_cart
+      </i>
+    </button>
     <div *ngIf="authService.isAuthenticated()">
-      <button mat-button routerLink="cart">
-        <i class="material-icons" matBadge="{{ shoppingCartService.totalQuantity }}" matBadgeColor="warn">
-          shopping_cart
-        </i>
-      </button>
-    </div>
-    <div *ngIf="authService.isAuthenticated()">
-      <button mat-button [matMenuTriggerFor]="menuLogin">
+      <button mat-button *ngIf="authService.isAuthenticated()" [matMenuTriggerFor]="menuLogin">
         <i class="material-icons">
           account_circle
         </i>

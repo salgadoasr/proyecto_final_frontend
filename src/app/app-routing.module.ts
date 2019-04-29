@@ -9,6 +9,10 @@ import { KitsComponent } from './components/products/kits/kits.component';
 import { KitComponent } from './components/products/kit/kit.component';
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { CartComponent } from './components/shopping/cart/cart.component';
+import { CreateSkeinComponent } from './components/admin/create-skein/create-skein.component';
+import { CreateColorComponent } from './components/admin/create-color/create-color.component';
+import { CreateKitComponent } from './components/admin/create-kit/create-kit.component';
+import { CreateSizeComponent } from './components/admin/create-size/create-size.component';
 
 const routes: Routes = [
   {
@@ -51,6 +55,23 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent
+  },
+  {
+    path: 'createskein',
+    component: CreateSkeinComponent
+  },
+  {
+    path: 'createcolor',
+    component: CreateColorComponent
+  },
+  {
+    path: 'createkit',
+    component: CreateKitComponent
+  }
+  ,
+  {
+    path: 'createsize',
+    component: CreateSizeComponent
   }
 ];
 

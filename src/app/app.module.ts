@@ -19,6 +19,10 @@ import { KitComponent } from './components/products/kit/kit.component';
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { CartComponent } from './components/shopping/cart/cart.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { CreateSkeinComponent } from './components/admin/create-skein/create-skein.component';
+import { CreateColorComponent } from './components/admin/create-color/create-color.component';
+import { CreateKitComponent } from './components/admin/create-kit/create-kit.component';
+import { CreateSizeComponent } from './components/admin/create-size/create-size.component';
 
 
 @NgModule({
@@ -32,7 +36,11 @@ import { LayoutModule } from '@angular/cdk/layout';
     KitsComponent,
     KitComponent,
     ProfileComponent,
-    CartComponent
+    CartComponent,
+    CreateSkeinComponent,
+    CreateColorComponent,
+    CreateKitComponent,
+    CreateSizeComponent
   ],
   imports: [
     BrowserModule,

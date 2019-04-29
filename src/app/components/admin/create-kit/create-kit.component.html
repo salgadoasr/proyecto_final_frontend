@@ -1,0 +1,29 @@
+<form class="form" [formGroup]="createKitForm" (ngSubmit)="create(imageInput)">
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Nombre" formControlName="name">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input matInput type="text" placeholder="Detalles" formControlName="details">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Lana</mat-label>
+    <mat-select formControlName="skein">
+      <mat-option *ngFor="let product of (products$ | async)" value="{{ product.skein_uuid }}">
+        {{ product.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field><br />
+  <mat-form-field>
+    <mat-label>Temporada</mat-label>
+    <mat-select formControlName="type_id">
+      <mat-option value="1">
+        primavera-verano
+      </mat-option>
+      <mat-option value="2">
+        otoño-invierno
+      </mat-option>
+    </mat-select>
+  </mat-form-field><br />
+  <input #imageInput multiple type="file" accept="image/*" placeholder="Image" formControlName="file"><br /><br />
+  <button mat-raised-button color="primary">Añade kit</button>
+</form>

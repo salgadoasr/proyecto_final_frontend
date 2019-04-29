@@ -49,7 +49,9 @@ export class AuthService {
   }
 
   isAdmin() {
-    if (this.user.isAdmin === 1) return true;
+    if (this.isAuthenticated()) {
+      if (this.user.is_admin === 1) return true;
+    }
     return false;
   }
 

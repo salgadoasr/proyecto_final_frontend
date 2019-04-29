@@ -6,14 +6,12 @@
   <div class="row">
     <div class="col" *ngFor="let product of (products$ | async)">
       <mat-card class="card">
-        <mat-card-header>
-          <mat-card-title>{{ product.name }}</mat-card-title>
-          <mat-card-subtitle></mat-card-subtitle>
-        </mat-card-header>
         <img mat-card-image src="{{ product.image_url}}" alt="{{ product.name }}">
         <mat-card-content>
-          <p>{{ product.details }}</p>
-          <p>{{ product.prize }}</p>
+          <p>{{ product.name }}</p>
+
+          <p>{{ product.type }}</p>
+          <p>{{ product.prize }}€</p>
         </mat-card-content>
         <mat-card-actions>
           <button (click)="goToKit(product)" mat-raised-button>VER DETALLE</button>
