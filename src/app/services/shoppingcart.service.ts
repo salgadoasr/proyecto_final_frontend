@@ -33,7 +33,7 @@ export class ShoppingCartService {
     }
   }
 
-
+  // CALCULATE the total prize of the order
   calcTotalPrize() {
     let productTotal;
     this.totalPrize = 0;
@@ -106,8 +106,10 @@ export class ShoppingCartService {
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 
+  ///////////////////////////////////////////
+  //ADD a unit of skein or kit of the shopping cart 
+  ///////////////////////////////////////////
 
-  //ADD a unit of product from shopping cart 
   addToCart(product) {
     if (product.color) {
       this.addUnitSkein(product);
@@ -117,7 +119,6 @@ export class ShoppingCartService {
   }
 
 
-  //ADD 1 unit of skein to shopping cart
   addUnitSkein(product) {
     let actualItem;
     let position;
@@ -137,7 +138,6 @@ export class ShoppingCartService {
   }
 
 
-  //ADD 1 unit of kit to shopping cart
   addUnitKit(product) {
     let actualItem;
     let position;
@@ -156,8 +156,13 @@ export class ShoppingCartService {
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
 
-  //DELETE a product from shopping cart
+  /////////////////////////////////////////////////
+  //DELETE a product of the shopping cart
+  /////////////////////////////////////////////////
+
   deleteFromCart(product) {
     if (product.color) {
       this.deleteSkeinFromCart(product);
@@ -167,7 +172,6 @@ export class ShoppingCartService {
   }
 
 
-  //DELETE a skein from shopping cart
   deleteSkeinFromCart(product) {
     let position;
 
@@ -186,7 +190,6 @@ export class ShoppingCartService {
   }
 
 
-  //DELETE a kit from shopping cart
   deleteKitFromCart(product) {
     let position;
 
@@ -205,7 +208,13 @@ export class ShoppingCartService {
   }
 
 
-  //REMOVE a unit of a product from shopping cart
+  /////////////////////////////////////////////////
+  /////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////
+  //REMOVE a unit of a skein or kit from shopping cart
+  ////////////////////////////////////////////////////
+
   removeUnitFromCart(product) {
     if (product.color) {
       this.removeSkeinUnit(product);
@@ -215,7 +224,6 @@ export class ShoppingCartService {
   }
 
 
-  //REMOVE 1 unit of a skein from shopping cart
   removeSkeinUnit(product) {
     let position;
     let actualItem;
@@ -242,7 +250,6 @@ export class ShoppingCartService {
   }
 
 
-  //REMOVE 1 unit of a kit from shopping cart
   removeKitUnit(product) {
     let position;
     let actualItem;
@@ -266,6 +273,13 @@ export class ShoppingCartService {
     this.calcTotalItems();
     this.calcTotalPrize();
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
+  }
+
+  emptyCart() {
+    this.cart = [];
+    localStorage.removeItem(`${this.authService.user.user_uuid}`);
+    this.totalQuantity = 0;
+    this.totalPrize = 0;
   }
 
 }

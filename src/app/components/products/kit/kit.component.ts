@@ -43,7 +43,7 @@ export class KitComponent implements OnInit {
   delete(kit_uuid) {
     this.adminService
       .deleteKit(kit_uuid)
-      .subscribe(() => this.router.navigate(['/skeins']), error => console.log(error));
+      .subscribe(() => this.router.navigate(['/kits']), error => console.log(error));
   }
 
   actualSize(size) {
