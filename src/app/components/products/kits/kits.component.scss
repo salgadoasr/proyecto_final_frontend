@@ -1,6 +1,24 @@
+.col {
+  padding: 0;
+}
+
+.title {
+  height:40px;
+  font-weight: 500;
+}
+
+.season {
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+}
+
 .card {
-  max-width: 400px;
-  margin:auto;
+  width: 200px;
+  margin:10px;
+}
+
+.card button {
+  width: 100%;
 }
 
 .card img {
@@ -14,5 +32,6 @@
 .titulo h1{
   font-family: Roboto,"Helvetica Neue",sans-serif;
   color: #494949;
-  margin:50px;
+  margin-left: 55px;
+  margin-top: 40px;
 }

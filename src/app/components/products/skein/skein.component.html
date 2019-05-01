@@ -1,38 +1,41 @@
-<mat-grid-list cols="2">
+<mat-grid-list cols="2" *ngIf="(product$ | async) as product">
   <mat-grid-tile>
     <mat-card class="image">
       <mat-card-content>
-        <img mat-card-image src="{{ imageUrl$ }}" alt="{{ product$.name }}">
+        <img mat-card-image src="{{ this.image }}" alt="{{ product.name }}">
       </mat-card-content>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
     <mat-card class="card-content">
-      <mat-card-title>{{ product$.name }}</mat-card-title>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>{{ product.season }}</mat-card-subtitle>
       <mat-card-content>
-        <p>{{ product$.composition }}</p>
-        <p>{{ product$.weight }} {{ product$.large }}</p>
-        <p>{{ product$.description }}</p>
+        <p>{{ product.composition }}</p>
+        <p>{{ product.weight }} {{ product.large }}</p>
+        <p>{{ product.description }}</p>
         <p>
           <button (click)="removeUnit()" class="btn btn-manage-units btn-remove-unit">-</button>
           <input id="quant" type="text" class="selected-units text-center" value="{{ quantity }}">
           <button (click)="addUnit()" class="btn btn-manage-units btn-add-unit">+</button>
-          <span class="prize"> {{ product$.prize }}€</span>
+          <span class="prize"> {{ product.prize }}€</span>
         </p>
       </mat-card-content>
       <mat-form-field>
         <mat-label>Color</mat-label>
         <mat-select>
-          <mat-option (click)="selectImageUrl(color.image_url); actualColor(color)"
-            *ngFor="let color of (colors$ | async)" value="{{ color.color }}">
+          <mat-option (click)="selectImage(color.image_url); actualColor(color)" *ngFor="let color of product.colors"
+            value="color.color">
             {{ color.color }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-card-actions>
-        <button mat-raised-button *ngIf="authService.isAuthenticated()"
-          (click)="shoppingCartService.addSkeinToCart(product$, this.color, quantity)">Comprar</button>
+        <button mat-raised-button *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
+          (click)="shoppingCartService.addSkeinToCart(product, this.color, quantity)">Comprar</button>
         <button mat-raised-button *ngIf="!authService.isAuthenticated()" routerLink="/login">Comprar</button>
+        <button mat-raised-button *ngIf="authService.isAdmin()" (click)="delete(product.skein_uuid)">Eliminar
+          producto</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>

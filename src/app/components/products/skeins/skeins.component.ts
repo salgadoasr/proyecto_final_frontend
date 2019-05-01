@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { ProductService } from '../../../services/products.service';
@@ -22,7 +22,7 @@ export class SkeinsComponent implements OnInit {
   }
 
   goToSkein(skein) {
-    this.router.navigate(['/skein', JSON.stringify(skein)]);
+    this.router.navigate(['/skein', skein]);
   }
 
 }

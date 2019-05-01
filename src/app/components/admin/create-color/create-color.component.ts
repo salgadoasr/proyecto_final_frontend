@@ -37,7 +37,10 @@ export class CreateColorComponent implements OnInit {
     if (this.createColorForm.valid) {
       this.adminService
         .createColor(this.createColorForm.value, file)
-        .subscribe(() => this.router.navigate(['/skeins']), error => console.log(error));
+        .subscribe(() => {
+          this.createColorForm.reset();
+          window.location.reload();
+        }, error => console.log(error));
     }
   }
 

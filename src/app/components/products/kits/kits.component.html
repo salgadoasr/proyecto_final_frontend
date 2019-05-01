@@ -8,12 +8,12 @@
       <mat-card class="card">
         <img mat-card-image src="{{ product.image_url}}" alt="{{ product.name }}">
         <mat-card-content>
-          <p>{{ product.name }}</p>
-          <p>{{ product.season }}</p>
+          <p class="title">{{ product.name }}</p>
+          <p class="season">{{ product.season }}</p>
           <p>{{ product.prize }}€</p>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="goToKit(product)" mat-raised-button>VER DETALLE</button>
+          <button mat-stroked-button (click)="goToKit(product.kit_uuid)">VER DETALLE</button>
         </mat-card-actions>
       </mat-card>
     </div>

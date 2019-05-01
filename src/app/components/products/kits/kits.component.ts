@@ -21,7 +21,7 @@ export class KitsComponent implements OnInit {
       .pipe(catchError(error => error));
   }
 
-  goToKit(kit) {
-    this.router.navigate(['/kit', JSON.stringify(kit)]);
+  goToKit(kit_uuid) {
+    this.router.navigate(['/kit', kit_uuid]);
   }
 }

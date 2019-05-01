@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { catchError } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, tap } from 'rxjs/operators';
 
 
 import { ProductService } from '../../../services/products.service';
 import { ShoppingCartService } from '../../../services/shoppingcart.service';
 import { AuthService } from '../../../services/auth.service';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'app-skein',
@@ -14,30 +15,44 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class SkeinComponent implements OnInit {
   product$;
-  colors$;
-  imageUrl$;
-  quantity;
+  image;
   color;
+  quantity;
 
-  constructor(private productService: ProductService, private router: ActivatedRoute, private shoppingCartService: ShoppingCartService, private authService: AuthService) { }
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private productService: ProductService,
+    public shoppingCartService:
+      ShoppingCartService,
+    public authService: AuthService,
+    private adminService: AdminService
+  ) { }
+
 
   ngOnInit() {
-    this.product$ = JSON.parse(this.router.snapshot.params.skein);
-    this.colors$ = this.productService
-      .getSkeinColors(this.product$.skein_uuid)
-      .pipe(catchError(error => error));
-    this.imageUrl$ = this.product$.image_url;
+    this.product$ = this.productService
+      .getSkein(this.route.snapshot.params.skein)
+      .pipe(tap(data => {
+        this.color = data;
+        this.image = data["image_url"];
+      }), catchError(error => error));
     this.quantity = 1;
-    //lo hago porque no consigo acceder al objeto color del producto cuando carga el módulo pero sirve igual porque tiene los campos que necesito
-    this.color = this.product$;
+  }
+
+  delete(skein_uuid) {
+    this.adminService
+      .deleteSkein(skein_uuid)
+      .subscribe(() => this.router.navigate(['/skeins']), error => console.log(error));
   }
 
   actualColor(color) {
     this.color = color;
   }
 
-  selectImageUrl(imageUrl) {
-    this.imageUrl$ = imageUrl;
+  selectImage(image) {
+    this.image = image;
   }
 
   removeUnit() {
@@ -49,5 +64,4 @@ export class SkeinComponent implements OnInit {
     if (this.quantity < 50)
       ++this.quantity;
   }
-
 }

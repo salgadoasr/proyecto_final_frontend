@@ -8,7 +8,7 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   createSkein({ name, description, composition, weight, large, season, prize }) {
-    return this.http.post(`${environment.apiBaseUrl}/admin/skein`, {
+    return this.http.post(`${environment.apiBaseUrl}/admin/createskein`, {
       name,
       description,
       composition,
@@ -19,12 +19,12 @@ export class AdminService {
     });
   }
 
-  createSize({ size, kit: kit_uuid, prize, skeins }) {
+  createSize({ size, kit: kit_uuid, prize, num_skeins }) {
     return this.http.post(`${environment.apiBaseUrl}/admin/createsize`, {
       size,
       kit_uuid,
       prize,
-      skeins
+      num_skeins
     });
   }
 
@@ -44,6 +44,22 @@ export class AdminService {
     formData.append('uuid', uuid);
     formData.append('season', season);
     return this.http.post(`${environment.apiBaseUrl}/admin/createkit`, formData);
+  }
+
+  deleteSkein(skein_uuid) {
+    return this.http.delete(`${environment.apiBaseUrl}/admin/deleteskein`, {
+      params: {
+        skein_uuid: skein_uuid
+      }
+    });
+  }
+
+  deleteKit(kit_uuid) {
+    return this.http.delete(`${environment.apiBaseUrl}/admin/deletekit`, {
+      params: {
+        kit_uuid: kit_uuid
+      }
+    });
   }
 
   getSkeins() {

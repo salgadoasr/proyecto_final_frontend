@@ -20,7 +20,7 @@ export class CreateSkeinComponent implements OnInit {
       weight: ['', [Validators.required]],
       large: ['', [Validators.required]],
       season: ['', [Validators.required]],
-      prize: ['', [Validators.required]],
+      prize: ['', [Validators.pattern("^[0-9]*$"), Validators.required]],
     },
     { updateOn: 'blur' }
   );
@@ -34,7 +34,10 @@ export class CreateSkeinComponent implements OnInit {
     if (this.createSkeinForm.valid) {
       this.adminService
         .createSkein(this.createSkeinForm.value)
-        .subscribe(() => this.router.navigate(['/skeins']), error => console.log(error));
+        .subscribe(() => {
+          this.createSkeinForm.reset();
+          window.location.reload();
+        }, error => console.log(error));
     }
   }
 

@@ -11,14 +11,6 @@ export class ProductService {
     return this.http.get(`${environment.apiBaseUrl}/user/skeins`);
   }
 
-  getSkeinColors(skein_uuid) {
-    return this.http.get(`${environment.apiBaseUrl}/user/skeincolors`, {
-      params: {
-        skein_uuid: skein_uuid
-      }
-    });
-  }
-
   getSkein(skein_uuid) {
     return this.http.get(`${environment.apiBaseUrl}/user/skein`, {
       params: {
@@ -31,8 +23,8 @@ export class ProductService {
     return this.http.get(`${environment.apiBaseUrl}/user/kits`);
   }
 
-  getKitSizes(kit_uuid) {
-    return this.http.get(`${environment.apiBaseUrl}/user/kitsize`, {
+  getKit(kit_uuid) {
+    return this.http.get(`${environment.apiBaseUrl}/user/kit`, {
       params: {
         kit_uuid: kit_uuid
       }

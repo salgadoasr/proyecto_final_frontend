@@ -38,7 +38,10 @@ export class CreateKitComponent implements OnInit {
     if (this.createKitForm.valid) {
       this.adminService
         .createKit(this.createKitForm.value, file)
-        .subscribe(() => this.router.navigate(['/kits']), error => console.log(error));
+        .subscribe(() => {
+          this.createKitForm.reset();
+          window.location.reload();
+        }, error => console.log(error));
     }
   }
 

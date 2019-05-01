@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { catchError } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, tap } from 'rxjs/operators';
 
 import { ProductService } from '../../../services/products.service';
 import { ShoppingCartService } from '../../../services/shoppingcart.service';
 import { AuthService } from '../../../services/auth.service';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'app-kit',
@@ -12,25 +13,37 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./kit.component.scss']
 })
 export class KitComponent implements OnInit {
-  product;
-  sizes$;
-  sizePrizes;
-  sizeSkeins;
-  quantity;
+  product$;
+  prize;
+  numSkeins;
   size;
+  quantity;
 
-  constructor(private productService: ProductService, private router: ActivatedRoute, private shoppingCartService: ShoppingCartService, private authService: AuthService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private productService: ProductService,
+    public shoppingCartService:
+      ShoppingCartService,
+    public authService: AuthService,
+    private adminService: AdminService
+  ) { }
 
   ngOnInit() {
-    this.product = JSON.parse(this.router.snapshot.params.kit);
-    this.sizes$ = this.productService
-      .getKitSizes(this.product.kit_uuid)
-      .pipe(catchError(error => error));
-    this.sizePrizes = this.product.prize;
-    this.sizeSkeins = this.product.skeins;
+    this.product$ = this.productService
+      .getKit(this.route.snapshot.params.kit)
+      .pipe(tap(data => {
+        this.numSkeins = data["num_skeins"];
+        this.prize = data["prize"];
+        this.size = data;
+      }), catchError(error => error));
     this.quantity = 1;
-    //lo hago porque no consigo acceder al objeto color del producto cuando carga el módulo pero sirve igual porque tiene los campos que necesito
-    this.size = this.product;
+  }
+
+  delete(kit_uuid) {
+    this.adminService
+      .deleteKit(kit_uuid)
+      .subscribe(() => this.router.navigate(['/skeins']), error => console.log(error));
   }
 
   actualSize(size) {
@@ -38,11 +51,11 @@ export class KitComponent implements OnInit {
   }
 
   selectPrize(prize) {
-    this.sizePrizes = prize;
+    this.prize = prize;
   }
 
-  selectSkeins(skeins) {
-    this.sizeSkeins = skeins;
+  selectSkeins(numSkeins) {
+    this.numSkeins = numSkeins;
   }
 
   removeUnit() {

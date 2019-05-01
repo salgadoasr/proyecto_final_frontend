@@ -16,9 +16,9 @@ export class CreateSizeComponent implements OnInit {
   createSizeForm = this.fb.group(
     {
       size: ['', [Validators.required]],
-      prize: ['', [Validators.required]],
+      prize: ['', [Validators.pattern("^[0-9]*$"), Validators.required]],
       kit: ['', [Validators.required]],
-      skeins: ['', [Validators.required]]
+      num_skeins: ['', [Validators.pattern("^[0-9]*$"), Validators.required]]
     },
     { updateOn: 'blur' }
   );
@@ -35,7 +35,10 @@ export class CreateSizeComponent implements OnInit {
     if (this.createSizeForm.valid) {
       this.adminService
         .createSize(this.createSizeForm.value)
-        .subscribe(() => this.router.navigate(['/kits']), error => console.log(error));
+        .subscribe(() => {
+          this.createSizeForm.reset();
+          window.location.reload();
+        }, error => console.log(error));
     }
   }
 

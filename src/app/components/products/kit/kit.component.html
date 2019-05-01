@@ -1,4 +1,4 @@
-<mat-grid-list cols="2">
+<mat-grid-list cols="2" *ngIf="(product$ | async) as product">
   <mat-grid-tile>
     <mat-card class="image">
       <mat-card-content>
@@ -9,7 +9,7 @@
   <mat-grid-tile>
     <mat-card class="card-content">
       <mat-card-title>{{ product.name }}</mat-card-title>
-      <mat-card-subtitle>{{ sizeSkeins }} ovillos</mat-card-subtitle>
+      <mat-card-subtitle>{{ numSkeins }} ovillos</mat-card-subtitle>
       <mat-card-content>
         <p>{{ product.composition }}</p>
         <p>{{ product.details }}</p>
@@ -17,22 +17,24 @@
           <button (click)="removeUnit()" class="btn btn-manage-units btn-remove-unit">-</button>
           <input id="quant" type="text" class="selected-units text-center" value="{{ quantity }}">
           <button (click)="addUnit()" class="btn btn-manage-units btn-add-unit">+</button>
-          <span class="prize"> {{ sizePrizes }}€</span>
+          <span class="prize"> {{ prize }}€</span>
         </p>
       </mat-card-content>
       <mat-form-field>
         <mat-label>Size</mat-label>
         <mat-select>
           <mat-option (click)="selectPrize(size.prize); selectSkeins(size.skeins); actualSize(size)"
-            *ngFor="let size of (sizes$ | async)" value="{{ size.size }}">
+            *ngFor="let size of product.sizes" value="{{ size.size }}">
             {{ size.size }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-card-actions>
-        <button mat-raised-button *ngIf="authService.isAuthenticated()"
+        <button mat-raised-button *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
           (click)="shoppingCartService.addKitToCart(product, this.size, quantity)">Comprar</button>
         <button mat-raised-button *ngIf="!authService.isAuthenticated()" routerLink="/login">Comprar</button>
+        <button mat-raised-button *ngIf="authService.isAdmin()" (click)="delete(product.kit_uuid)">Eliminar
+          producto</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
