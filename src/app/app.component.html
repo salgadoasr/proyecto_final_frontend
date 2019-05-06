@@ -1,6 +1,6 @@
 <header>
   <mat-toolbar class="toolbar">
-    <button mat-button routerLink="welcome"><img src="assets/logo_katia.svg"></button>
+    <button mat-button routerLink="welcome"><img src="assets/k4k.jpg"></button>
     <button mat-button routerLink="skeins">Lana</button>
     <button mat-button routerLink="kits">Kits</button>
     <button mat-button *ngIf="!authService.isAuthenticated()" [matMenuTriggerFor]="menuLogin">Iniciar sesión</button>
@@ -15,6 +15,9 @@
       <button mat-menu-item routerLink="createkit">Crear kit</button>
       <button mat-menu-item routerLink="createsize">Crear talla</button>
     </mat-menu>
+    <button mat-button *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
+      routerLink="orders">Pedidos</button>
+    <button mat-button *ngIf="authService.isAdmin()" routerLink="adminorders">Pedidos</button>
     <button mat-button *ngIf="authService.isAuthenticated()" routerLink="cart">
       <i class="material-icons" matBadge="{{ shoppingCartService.totalQuantity }}" matBadgeColor="warn">
         shopping_cart

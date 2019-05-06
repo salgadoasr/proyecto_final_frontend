@@ -1,0 +1,28 @@
+<div class="titulo">
+  <h1>Pedidos</h1>
+</div>
+
+<table class="table table-hover">
+  <tr *ngFor="let order of (orders$ | async)">
+    <td class="order">{{ order.purchase_at }}</td>
+    <td class="order">{{ order.total_prize }} €</td>
+    <td>
+      <table class="table table-striped">
+        <tr *ngFor="let product of order.products">
+          <!--<td><img mat-card-sm-image src="{{ product.image_url}}"></td>-->
+          <td class="products">{{ product.product_name }}</td>
+          <td *ngIf="product.color" class="products">{{ product.color }}</td>
+          <td *ngIf="product.size" class="products">{{ product.size }}</td>
+          <!--<td class="products">{{ product.quantity }}</td>-->
+        </tr>
+      </table>
+    </td>
+
+    <td *ngIf="!order.paid" class="order">
+      <button mat-raised-button (click)="this.isPaid(order.order_uuid)">
+        Pagar
+      </button>
+    </td>
+    <td *ngIf="order.paid" class="order">Pagado</td>
+  </tr>
+</table>

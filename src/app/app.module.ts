@@ -23,6 +23,8 @@ import { CreateSkeinComponent } from './components/admin/create-skein/create-ske
 import { CreateColorComponent } from './components/admin/create-color/create-color.component';
 import { CreateKitComponent } from './components/admin/create-kit/create-kit.component';
 import { CreateSizeComponent } from './components/admin/create-size/create-size.component';
+import { OrdersComponent } from './components/shopping/orders/orders.component';
+import { AdminOrdersComponent } from './components/admin/adminorders/adminorders.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { CreateSizeComponent } from './components/admin/create-size/create-size.
     CreateSkeinComponent,
     CreateColorComponent,
     CreateKitComponent,
-    CreateSizeComponent
+    CreateSizeComponent,
+    OrdersComponent,
+    AdminOrdersComponent
   ],
   imports: [
     BrowserModule,

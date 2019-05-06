@@ -70,4 +70,8 @@ export class AdminService {
     return this.http.get(`${environment.apiBaseUrl}/admin/kits`);
   }
 
+  getOrders() {
+    return this.http.get(`${environment.apiBaseUrl}/admin/orders`);
+  }
+
 }

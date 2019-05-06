@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
+import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 
 @Injectable({ providedIn: 'root' })
@@ -10,7 +12,7 @@ export class ShoppingCartService {
 
 
   //CHARGE the shopping cart from localstorage at the beginning
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private http: HttpClient) {
     if (this.authService.user) {
       if (localStorage.getItem(`${this.authService.user.user_uuid}`)) {
         this.cart = JSON.parse(localStorage.getItem(`${this.authService.user.user_uuid}`));
@@ -107,7 +109,7 @@ export class ShoppingCartService {
   }
 
   ///////////////////////////////////////////
-  //ADD a unit of skein or kit of the shopping cart 
+  //ADD a unit of skein or kit to the shopping cart 
   ///////////////////////////////////////////
 
   addToCart(product) {
@@ -160,7 +162,7 @@ export class ShoppingCartService {
   /////////////////////////////////////////////////
 
   /////////////////////////////////////////////////
-  //DELETE a product of the shopping cart
+  //DELETE a product from the shopping cart
   /////////////////////////////////////////////////
 
   deleteFromCart(product) {
@@ -275,10 +277,11 @@ export class ShoppingCartService {
     localStorage.setItem(`${this.authService.user.user_uuid}`, JSON.stringify(this.cart));
   }
 
+  //empty the cart when process a order
   emptyCart() {
     this.cart = [];
     localStorage.removeItem(`${this.authService.user.user_uuid}`);
-    this.totalQuantity = 0;
+    this.totalQuantity = undefined;
     this.totalPrize = 0;
   }
 

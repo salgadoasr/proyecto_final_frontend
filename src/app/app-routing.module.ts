@@ -13,6 +13,8 @@ import { CreateSkeinComponent } from './components/admin/create-skein/create-ske
 import { CreateColorComponent } from './components/admin/create-color/create-color.component';
 import { CreateKitComponent } from './components/admin/create-kit/create-kit.component';
 import { CreateSizeComponent } from './components/admin/create-size/create-size.component';
+import { OrdersComponent } from './components/shopping/orders/orders.component';
+import { AdminOrdersComponent } from './components/admin/adminorders/adminorders.component';
 
 const routes: Routes = [
   {
@@ -55,6 +57,14 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent
+  },
+  {
+    path: 'adminorders',
+    component: AdminOrdersComponent
   },
   {
     path: 'createskein',
