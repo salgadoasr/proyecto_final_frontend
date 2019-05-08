@@ -1,4 +1,7 @@
 <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+  <div *ngIf="this.created" class="alert alert-secondary" role="alert">
+    Usuario creado! revise el correo
+  </div>
   <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Nombre" formControlName="name">
   </mat-form-field>
@@ -9,7 +12,7 @@
     <input matInput type="" placeholder="Email" formControlName="email">
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input matInput type="text" placeholder="Password" formControlName="password">
+    <input matInput type="password" placeholder="Password" formControlName="password">
   </mat-form-field>
   <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Dirección" formControlName="direction">

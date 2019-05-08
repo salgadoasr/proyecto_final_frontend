@@ -12,6 +12,7 @@ import { AdminService } from '../../../services/admin.service';
 })
 export class CreateSizeComponent implements OnInit {
   products$;
+  created = false;
 
   createSizeForm = this.fb.group(
     {
@@ -37,7 +38,7 @@ export class CreateSizeComponent implements OnInit {
         .createSize(this.createSizeForm.value)
         .subscribe(() => {
           this.createSizeForm.reset();
-          window.location.reload();
+          this.created = true;
         }, error => console.log(error));
     }
   }

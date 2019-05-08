@@ -11,6 +11,7 @@ import { AdminService } from '../../../services/admin.service';
   styleUrls: ['./create-skein.component.scss']
 })
 export class CreateSkeinComponent implements OnInit {
+  created = false;
 
   createSkeinForm = this.fb.group(
     {
@@ -36,7 +37,7 @@ export class CreateSkeinComponent implements OnInit {
         .createSkein(this.createSkeinForm.value)
         .subscribe(() => {
           this.createSkeinForm.reset();
-          window.location.reload();
+          this.created = true;
         }, error => console.log(error));
     }
   }

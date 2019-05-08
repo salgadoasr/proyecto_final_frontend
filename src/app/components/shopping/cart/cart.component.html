@@ -16,15 +16,15 @@
     </td>
     <td *ngIf="cart.color">{{ cart.color.color }}</td>
     <td *ngIf="cart.size">{{ cart.size.size }}</td>
-    <td *ngIf="cart.color"> {{ cart.product.prize }} €</td>
-    <td *ngIf="cart.size"> {{ cart.size.prize }} €</td>
+    <td *ngIf="cart.color"> {{ cart.product.prize }} € ud.</td>
+    <td *ngIf="cart.size"> {{ cart.size.prize }} € ud.</td>
     <td><button mat-raised-button (click)="shoppingCartService.deleteFromCart(cart)">Eliminar</button></td>
   </tr>
   <tr>
-    <td colspan="6">Total : {{ shoppingCartService.totalPrize }} €</td>
-  </tr>
-  <tr>
-    <td colspan="6"><button mat-raised-button (click)="this.processOrder(); shoppingCartService.emptyCart()">Tramitar
+    <td colspan="3"></td>
+    <td>SUMA TOTAL</td>
+    <td>{{ shoppingCartService.totalPrize }} €</td>
+    <td><button mat-raised-button color="warn" (click)="this.processOrder(); shoppingCartService.emptyCart()">Tramitar
         pedido</button></td>
   </tr>
 

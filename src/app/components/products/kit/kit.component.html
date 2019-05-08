@@ -9,15 +9,20 @@
   <mat-grid-tile>
     <mat-card class="card-content">
       <mat-card-title>{{ product.name }}</mat-card-title>
-      <mat-card-subtitle>{{ numSkeins }} ovillos</mat-card-subtitle>
+      <mat-card-subtitle>{{ product.season }}</mat-card-subtitle>
       <mat-card-content>
         <p>{{ product.composition }}</p>
         <p>{{ product.details }}</p>
+        <p>El kit contiene :</p>
+        <p>* {{ numSkeins }} ovillos</p>
+        <p>* Agujas de tejer</p>
+        <p>* El patrón</p>
+        <p>* El packaging K4K</p>
         <p>
           <button (click)="removeUnit()" class="btn btn-manage-units btn-remove-unit">-</button>
           <input id="quant" type="text" class="selected-units text-center" value="{{ quantity }}">
           <button (click)="addUnit()" class="btn btn-manage-units btn-add-unit">+</button>
-          <span class="prize"> {{ prize }}€</span>
+          <span class="prize"> {{ prize }}€ </span><span>ud.</span>
         </p>
       </mat-card-content>
       <mat-form-field>

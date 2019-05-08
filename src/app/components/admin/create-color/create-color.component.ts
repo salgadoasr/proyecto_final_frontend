@@ -13,6 +13,7 @@ import { AdminService } from '../../../services/admin.service';
 })
 export class CreateColorComponent implements OnInit {
   products$;
+  created = false;
 
   createColorForm = this.fb.group(
     {
@@ -39,9 +40,10 @@ export class CreateColorComponent implements OnInit {
         .createColor(this.createColorForm.value, file)
         .subscribe(() => {
           this.createColorForm.reset();
-          window.location.reload();
+          this.created = true;
         }, error => console.log(error));
     }
-  }
+    }
+  
 
 }

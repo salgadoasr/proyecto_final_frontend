@@ -10,6 +10,8 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  created = false;
+
   registerForm = this.fb.group(
     {
       name: ['', [Validators.required]],
@@ -27,7 +29,10 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.authService
         .register(this.registerForm.value)
-        .subscribe(() => this.router.navigate(['/welcome']), error => console.log(error));
+        .subscribe(() => {
+          this.registerForm.reset();
+          this.created = true;
+        }, error => console.log(error));
     }
   }
 

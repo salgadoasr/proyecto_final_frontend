@@ -13,6 +13,7 @@ import { AdminService } from '../../../services/admin.service';
 })
 export class CreateKitComponent implements OnInit {
   products$;
+  created = false;
 
   createKitForm = this.fb.group(
     {
@@ -40,7 +41,7 @@ export class CreateKitComponent implements OnInit {
         .createKit(this.createKitForm.value, file)
         .subscribe(() => {
           this.createKitForm.reset();
-          window.location.reload();
+          this.created = true;
         }, error => console.log(error));
     }
   }

@@ -1,4 +1,7 @@
 <form class="form" [formGroup]="createSizeForm" (ngSubmit)="create()">
+  <div *ngIf="this.created" class="alert alert-secondary" role="alert">
+    Talla creada!
+  </div>
   <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Size" formControlName="size">
   </mat-form-field>

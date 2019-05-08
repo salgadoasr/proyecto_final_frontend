@@ -1,4 +1,7 @@
 <form class="form" [formGroup]="createColorForm" (ngSubmit)="create(imageInput)">
+  <div *ngIf="this.created" class="alert alert-secondary" role="alert">
+    Color creado!
+  </div>
   <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Color" formControlName="color">
   </mat-form-field>
@@ -9,7 +12,7 @@
         {{ product.name }}
       </mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field><br />
   <input #imageInput multiple type="file" accept="image/*" placeholder="Image" formControlName="file"><br /><br />
   <button mat-raised-button color="primary">Añade color</button>
 </form>

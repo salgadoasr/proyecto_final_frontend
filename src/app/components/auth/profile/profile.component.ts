@@ -10,6 +10,8 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  created = false;
+
   profileForm = this.fb.group(
     {
       name: [''],
@@ -33,7 +35,13 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       this.authService
         .update(this.profileForm.value)
-        .subscribe(() => this.router.navigate(['/welcome']), error => console.log(error));
+        .subscribe(() => {
+          const { name, surnames, direction } = this.profileForm.value;
+          this.authService.user.name = name;
+          this.authService.user.surnames = surnames;
+          this.authService.user.direction = direction;
+          this.created = true;
+        }, error => console.log(error));
     }
   }
 

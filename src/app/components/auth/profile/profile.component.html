@@ -1,4 +1,7 @@
 <form class="form" [formGroup]="profileForm" (ngSubmit)="update()">
+  <div *ngIf="this.created" class="alert alert-secondary" role="alert">
+    Datos modificados correctamente!
+  </div>
   <mat-form-field class="full-width">
     <input matInput type="text" placeholder="Nombre" formControlName="name">
   </mat-form-field>

@@ -11,6 +11,6 @@ import { ShoppingCartService } from './services/shoppingcart.service';
 export class AppComponent {
   title = 'kits4kniters';
 
-  constructor(private authService: AuthService, private shoppingCartService: ShoppingCartService) { }
+  constructor(public authService: AuthService, public shoppingCartService: ShoppingCartService) { }
 
 }
